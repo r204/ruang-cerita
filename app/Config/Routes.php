@@ -34,11 +34,11 @@ $routes->get('/list-article', 'Artikel::index');
 
 
 
-
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('/artikel', 'Home::artikel');
+$routes->get('/detail/(:segment)', 'Home::detail/$1',);
 
 //Authentication Routes
 $routes->get('/sign-in', 'Auth::index');

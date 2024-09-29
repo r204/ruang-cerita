@@ -29,6 +29,16 @@ class Home extends BaseController
 		return view('home/artikel', $data);
 		//return view('home/template/footer');
 	}
+	public function detail($slug)
+	{
+		$this->artikel = new ArtikelModel();
+		$detail = $this->artikel->where(['slug' => $slug])->first();
+		$data = [
+			'title' => 'Artikel',
+			'artikel' => $detail
+		];
+		return view('/detailartikel', $data);
+	}
 
 	//--------------------------------------------------------------------
 

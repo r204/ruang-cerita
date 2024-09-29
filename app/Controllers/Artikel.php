@@ -27,8 +27,13 @@ class Artikel extends BaseController
     }
     public function artikel()
     {
+        $artikel = $this->artikelModel->findAll();
+        $data = [
+            'title' => 'RC | Artikel',
+            'artikel' => $artikel
+        ];
         //return view('home/template/header');
-        return view('home/artikel');
+        return view('home/artikel', $data);
         //return view('home/template/footer');
     }
 

@@ -2,6 +2,11 @@
 
 namespace App\Controllers;
 
+use App\Models\ArtikelModel;
+
+helper('form');
+helper('text');
+
 class Home extends BaseController
 {
 	public function index()
@@ -14,8 +19,14 @@ class Home extends BaseController
 	}
 	public function artikel()
 	{
+		$artikelModel = new ArtikelModel();
+		$artikel = $artikelModel->findAll();
+		$data = [
+			'title' => 'RC | Artikel',
+			'artikel' => $artikel
+		];
 		//return view('home/template/header');
-		return view('home/artikel');
+		return view('home/artikel', $data);
 		//return view('home/template/footer');
 	}
 

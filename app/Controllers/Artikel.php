@@ -25,16 +25,16 @@ class Artikel extends BaseController
         echo view('admin/artikel/index');
         echo view('admin/templates/footer');
     }
-    public function artikel()
+    public function create()
     {
         $artikel = $this->artikelModel->findAll();
         $data = [
             'title' => 'RC | Artikel',
             'artikel' => $artikel
         ];
-        //return view('home/template/header');
-        return view('home/artikel', $data);
-        //return view('home/template/footer');
+        echo view('admin/templates/header', $data);
+        echo view('admin/artikel/create');
+        echo view('admin/templates/footer');
     }
 
     //--------------------------------------------------------------------

@@ -5,7 +5,8 @@
         <h3 class="m-0 font-weight-bold text-primary">Daftar Postingan Artikel</h3>
     </div>
     <div class="card-body">
-        <div class="table-responsive">
+        <a href="/create" class="btn btn-primary">Buat Artikel Baru</a>
+        <div class="table-responsive mt-2">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
@@ -37,11 +38,10 @@
                             <td><span class="badge rounded-pill bg-warning"><?php echo $a->status ?></span></td>
                             <td><?= date('d/M/Y', strtotime($a->created_at)) ?></td>
                             <td>
-                                <a href="" class="btn btn-outline-warning"><i class="fas fa-pen"></a>
-                                <a href="" class="btn btn-outline-danger"><i class="fas fa-trash"></a>
+                                <a href="" class="btn btn-outline-warning">Edit</a>
+                                <a href="" class="btn btn-outline-danger">Hapus</a>
                             </td>
                         </tr>
-
                         <?php $i++; ?>
                     <?php endforeach ?>
 

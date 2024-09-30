@@ -31,6 +31,7 @@ $routes->setAutoRoute(true);
 //Admin Routes
 $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/list-article', 'Artikel::index');
+$routes->get('/create', 'Artikel::create');
 
 
 

@@ -42,20 +42,20 @@
                                     <input type="text" class="form-control" id="judul" name="judul" placeholder="Judul..." value="<?= set_value('judul') ?>" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <label for="judul" class="form-label">Kategori</label>
-                                    <select class="form-select" aria-label="Default select example">
+                                    <label for="kategori" class="form-label">Kategori</label>
+                                    <select class="form-select" aria-label="Default select example" name="category" value="<?= set_value('category') ?>">
                                         <option selected>Kategori Artikel</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        <?php foreach ($categories as $category) : ?>
+                                            <option value="<?php echo $category['id'] ?>"><?php echo $category['category'] ?></option>
+                                        <?php endforeach ?>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="judul" class="form-label">Status</label>
+                                    <label for="status" class="form-label">Status</label>
                                     <select class="form-select" aria-label="Default select example">
                                         <option selected>Status Publikasi</option>
                                         <option value="1">Publik</option>
-                                        <option value="2">Privat</option>
+                                        <option value="0">Privat</option>
                                     </select>
                                 </div>
 
@@ -69,14 +69,14 @@
                                     <div class="col-sm-2 mb-2">
                                         <img src="/img/artikel/default.png" class="img-thumbnail img-preview">
                                     </div>
-                                    <input type="file" class="form-control" id="img" name="img" value="<?= set_value('img') ?>" onchange="previewImg()">
+                                    <input type="file" class="form-control" id="img1" name="img1" value="<?= set_value('img1') ?>" onchange="previewImg()">
                                 </div>
                                 <div class="mb-3">
                                     <label for="img" class="form-label">Foto 2</label>
                                     <div class="col-sm-2 mb-2">
                                         <img src="/img/artikel/default.png" class="img-thumbnail img-preview">
                                     </div>
-                                    <input type="file" class="form-control" id="img" name="img" value="<?= set_value('img') ?>" onchange="previewImg()">
+                                    <input type="file" class="form-control" id="img2" name="img2" value="<?= set_value('img2') ?>" onchange="previewImg()">
                                 </div>
                                 <button type="submit" class="btn btn-outline-success"><i class="fas fa-paper-plane"></i>.Save</button>
                                 <a href="<?= site_url('admin.artikel') ?>" class="btn btn-outline-danger"><i class="fas fa-chevron-left"></i> Kembali</a>

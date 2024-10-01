@@ -11,8 +11,11 @@ class Home extends BaseController
 {
 	public function index()
 	{
+		$artikelModel = new ArtikelModel();
+		$artikel = $artikelModel->findAll();
 		$data = [
-			'title' => 'RC | Home'
+			'title' => 'Ruang Cerita | Home',
+			'artikel' => $artikel
 		];
 		return view('home/home', $data);
 		//return view('home/template/footer');
@@ -22,7 +25,7 @@ class Home extends BaseController
 		$artikelModel = new ArtikelModel();
 		$artikel = $artikelModel->findAll();
 		$data = [
-			'title' => 'RC | Artikel',
+			'title' => 'Ruang Cerita | Artikel',
 			'artikel' => $artikel
 		];
 		//return view('home/template/header');
@@ -34,7 +37,7 @@ class Home extends BaseController
 		$this->artikel = new ArtikelModel();
 		$detail = $this->artikel->where(['slug' => $slug])->first();
 		$data = [
-			'title' => 'Artikel',
+			'title' => 'Ruang Cerita',
 			'artikel' => $detail
 		];
 		return view('/detailartikel', $data);

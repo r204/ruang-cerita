@@ -29,9 +29,11 @@ $routes->setAutoRoute(true);
  * --------------------------------------------------------------------
  */
 //Admin Routes
-$routes->get('/dashboard', 'Dashboard::index');
-$routes->get('/list-article', 'Artikel::index');
-$routes->get('/create', 'Artikel::create');
+$routes->get('/admin.dashboard', 'Dashboard::index');
+$routes->get('/admin.artikel', 'Artikel::index');
+$routes->get('/admin.artikel.create', 'Artikel::create');
+$routes->post('/admin.artikel', 'Artikel::save');
+//$routes->get('/create', 'Artikel::create');
 
 
 

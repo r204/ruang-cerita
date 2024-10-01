@@ -7,7 +7,7 @@ class Dashboard extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'RC | Dashboard'
+            'title' => 'Ruang Cerita | Dashboard'
         ];
         echo view('admin/templates/header', $data);
         echo view('admin/dashboard/dashboard');

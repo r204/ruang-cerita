@@ -7,7 +7,7 @@ class Auth extends BaseController
     public function index()
     {
         $data = [
-            "title" => "Sign In"
+            "title" => "Ruang Cerita | Sign In"
         ];
         //return view('home/template/header');
         return view('home/signin', $data);
@@ -16,7 +16,7 @@ class Auth extends BaseController
     public function signup()
     {
         $data = [
-            "title" => "Sign Up"
+            "title" => "Ruang Cerita | Sign Up"
         ];
         //return view('home/template/header');
         return view('home/signup', $data);

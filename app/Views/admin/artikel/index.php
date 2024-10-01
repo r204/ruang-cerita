@@ -3,9 +3,24 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h3 class="m-0 font-weight-bold text-primary">Daftar Postingan Artikel</h3>
+        <?php if (!empty(session()->getFlashdata('berhasil'))) : ?>
+            <div class="alert alert-success">
+                <i class="fas fa-check"></i> <?php echo session()->getFlashdata('berhasil'); ?>
+            </div>
+        <?php endif ?>
+        <?php if (!empty(session()->getFlashdata('sukses'))) : ?>
+            <div class="alert alert-danger">
+                <i class="fas fa-trash"></i> <?php echo session()->getFlashdata('sukses'); ?>
+            </div>
+        <?php endif ?>
+        <?php if (!empty(session()->getFlashdata('updated'))) : ?>
+            <div class="alert alert-success">
+                <i class="fas fa-check"></i> <?php echo session()->getFlashdata('updated'); ?>
+            </div>
+        <?php endif ?>
     </div>
     <div class="card-body">
-        <a href="/create" class="btn btn-primary">Buat Artikel Baru</a>
+        <a href="/admin.artikel.create" class="btn btn-primary">Buat Artikel Baru</a>
         <div class="table-responsive mt-2">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>

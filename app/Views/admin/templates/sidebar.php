@@ -19,7 +19,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="/dashboard">
+                <a class="nav-link" href="/admin.dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -36,7 +36,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item active">
-                <a class="nav-link" href="/list-article">
+                <a class="nav-link" href="/admin.artikel">
                     <i class="fas fa-fw fa-newspaper"></i>
                     <span>Artikel</span></a>
             </li>

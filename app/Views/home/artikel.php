@@ -58,22 +58,29 @@
     </button>
 </div>
 <div class="container">
-    <?php foreach ($artikel as $a) : ?>
-        <div class="col-md-6">
-            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary"><?php echo $a->category ?></strong>
-                    <h3 class="mb-0"><?php echo $a->judul ?></h3>
-                    <div class="mb-1 text-muted"><?php echo $a->author ?></div>
-                    <div class="mb-1 text-muted"><?= date('d/M/Y', strtotime($a->created_at)) ?></div>
-                    <p class="card-text mb-auto"><?php echo word_limiter($a->body, 25) ?></p>
-                    <a href="/detail/<?= $a->slug; ?>" class="stretched-link">Continue reading</a>
-                </div>
-                <div class="col-auto d-none d-lg-block">
+    <div class="row">
+        <?php foreach ($artikel as $a => $value) : ?>
+            <?php if ($value->status != 'Privat'): ?>
+                <div class="col-md-6 mt-3">
+                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static" style="height: 300px;">
+                            <strong class="d-inline-block mb-2 text-primary"><?= strtoupper($value->category) ?></strong>
+                            <h3 class="mb-0"><?php echo $value->judul ?></h3>
+                            <div class="mb-1 text-muted"><?php echo $value->author ?></div>
+                            <div class="mb-1 text-muted"><?= date('d/M/Y', strtotime($value->created_at)) ?></div>
+                            <p class="card-text mb-auto"><?php echo word_limiter($value->body, 25) ?></p>
+                            <a href="/detail/<?= $value->slug; ?>" class="stretched-link">Continue reading</a>
+                        </div>
+                        <div class="col-auto d-none d-lg-block">
 
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    <?php endforeach ?>
+
+            <?php else: ?>
+
+            <?php endif; ?>
+        <?php endforeach ?>
+    </div>
 </div>
 <?= $this->endsection(); ?>

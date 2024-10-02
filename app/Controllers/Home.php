@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ArtikelModel;
+use App\Models\KategoriModel;
 
 helper('form');
 helper('text');
@@ -23,7 +24,9 @@ class Home extends BaseController
 	public function artikel()
 	{
 		$artikelModel = new ArtikelModel();
-		$artikel = $artikelModel->findAll();
+		$artikel = $artikelModel->show_category();
+		//$kategorimodel = new KategoriModel();
+		//$kategori = $kategorimodel->findAll();
 		$data = [
 			'title' => 'Ruang Cerita | Artikel',
 			'artikel' => $artikel
@@ -35,10 +38,14 @@ class Home extends BaseController
 	public function detail($slug)
 	{
 		$this->artikel = new ArtikelModel();
+		$kategorimodel = new KategoriModel();
+		$kategori = $kategorimodel->findAll();
 		$detail = $this->artikel->where(['slug' => $slug])->first();
+		//$kategoridetail = $this->artikel->where(['slug' => $slug])->first();
 		$data = [
 			'title' => 'Ruang Cerita',
-			'artikel' => $detail
+			'artikel' => $detail,
+			'category' => $kategori
 		];
 		return view('/detailartikel', $data);
 	}

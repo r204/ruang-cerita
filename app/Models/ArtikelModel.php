@@ -20,4 +20,14 @@ class ArtikelModel extends Model
         }
         return $this->where(['slug' => $slug])->first();
     }
+    function show_category()
+    {
+        $builder = $this->db->table('artikel');
+        //$builder->select('judul', 'slug', 'body', 'img1', 'created_at', 'updated_at', 'category', 'img2', 'status');
+        $builder->join('kategori', 'kategori.id = artikel.category');
+        $builder->join('status_publikasi', 'status_publikasi.id = artikel.status');
+        //$builder->where('is_admin', 1);
+        $query   = $builder->get();
+        return $query->getResult();
+    }
 }

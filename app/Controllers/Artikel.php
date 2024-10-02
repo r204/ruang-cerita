@@ -17,13 +17,13 @@ class Artikel extends BaseController
     public function index()
     {
         //$artikel = new ArtikelModel();
-        $artikel = $this->artikelModel->findAll();
+        $artikel = $this->artikelModel->show_category();
         $data = [
             'title' => 'Ruang Cerita | Artikel',
             'artikel' => $artikel
         ];
         echo view('admin/templates/header', $data);
-        echo view('admin/artikel/index');
+        echo view('admin/artikel/index', $data);
         echo view('admin/templates/footer');
     }
     public function create()
@@ -37,7 +37,7 @@ class Artikel extends BaseController
             'categories' => $categories
         ];
         echo view('admin/templates/header', $data);
-        echo view('admin/artikel/create');
+        echo view('admin/artikel/create',);
         echo view('admin/templates/footer');
     }
     public function save()

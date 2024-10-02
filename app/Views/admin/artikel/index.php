@@ -45,13 +45,17 @@
                 </tfoot>
                 <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($artikel as $a) : ?>
+                    <?php foreach ($artikel as $a => $value) : ?>
                         <tr>
                             <td><?php echo $i ?></td>
-                            <td><?php echo $a->judul ?></td>
-                            <td><?php echo word_limiter($a->body, 15) ?></td>
-                            <td><span class="badge rounded-pill bg-warning"><?php echo $a->status ?></span></td>
-                            <td><?= date('d/M/Y', strtotime($a->created_at)) ?></td>
+                            <td><?php echo $value->judul ?></td>
+                            <td><?php echo word_limiter($value->body, 15) ?></td>
+                            <?php if ($value->status != 'Publik'): ?>
+                                <td><span class="badge rounded-pill bg-warning"><?php echo $value->status ?></span></td>
+                            <?php else: ?>
+                                <td><span class="badge rounded-pill bg-success"><?php echo $value->status ?></span></td>
+                            <?php endif; ?>
+                            <td><?= date('d/M/Y', strtotime($value->created_at)) ?></td>
                             <td>
                                 <a href="" class="btn btn-outline-warning">Edit</a>
                                 <a href="" class="btn btn-outline-danger">Hapus</a>

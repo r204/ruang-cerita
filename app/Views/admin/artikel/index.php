@@ -58,7 +58,13 @@
                             <td><?= date('d/M/Y', strtotime($value->created_at)) ?></td>
                             <td>
                                 <a href="" class="btn btn-outline-warning">Edit</a>
-                                <a href="" class="btn btn-outline-danger">Hapus</a>
+                                <form action="admin.artikel/delete/<?= $value->id; ?>" method="POST" class="d-inline">
+                                    <?= csrf_field(); ?>
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button class="btn btn-outline-danger" onclick="return confirm('Apakah anda yakin mau menghapus artikel ini?');">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         <?php $i++; ?>

@@ -98,10 +98,8 @@ class Artikel extends BaseController
     {
 
         $this->artikel = new ArtikelModel();
-        $foto = $this->artikel->find($id);
-        $foto2 = $this->artikel->find($id);
-        unlink('img/artikel/' . $foto->img1);
-        unlink('img/artikel/' . $foto2->img2);
+        //$foto = $this->artikel->find($id);
+        //unlink('img/artikel' . $foto->img1);
 
         $this->artikel->where(['id' => $id])->delete();
         session()->setFlashdata('sukses', 'Artikel berhasil dihapus');

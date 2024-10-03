@@ -30,10 +30,16 @@ $routes->setAutoRoute(true);
  */
 //Admin Routes
 $routes->get('/admin.dashboard', 'Dashboard::index');
+//artikel
 $routes->get('/admin.artikel', 'Artikel::index');
 $routes->get('/admin.artikel.create', 'Artikel::create');
 $routes->post('/admin.artikel', 'Artikel::save');
 //$routes->get('/create', 'Artikel::create');
+//kategori
+$routes->get('/admin.kategori', 'Kategori::index');
+$routes->get('/admin.kategori.create', 'Kategori::create');
+$routes->post('/admin.kategori', 'Kategori::save');
+$routes->delete('admin.artikel/delete/(:num)', 'Artikel::delete/$1');
 
 
 

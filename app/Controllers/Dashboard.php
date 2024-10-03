@@ -2,12 +2,17 @@
 
 namespace App\Controllers;
 
+use App\Models\ArtikelModel;
+
 class Dashboard extends BaseController
 {
     public function index()
     {
+        $artikelModel = new ArtikelModel();
+        $artikel = $artikelModel->findAll();
         $data = [
-            'title' => 'Ruang Cerita | Dashboard'
+            'title' => 'Ruang Cerita | Dashboard',
+            'artikel' => $artikel
         ];
         echo view('admin/templates/header', $data);
         echo view('admin/dashboard/dashboard');

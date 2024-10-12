@@ -67,18 +67,18 @@
 
     <!-- Three columns of text below the carousel -->
     <div class="row">
-        <?php foreach ($artikel as $a) : ?>
-            <?php if ($a->status != '0'): ?>
-                <div class="col-lg-4">
+        <div class="col-lg-4">
+            <?php foreach ($artikel as $a) : ?>
+                <?php if ($a->status != '0'): ?>
                     <img src="/img/artikel/<?= $a->img1; ?>" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="...">
                     <h2><?php echo $a->judul ?></h2>
-                    <p><?php echo word_limiter($a->body, 25) ?></p>
+                    <p><?php echo word_limiter($a->body, 15) ?></p>
                     <p><a class="btn btn-secondary" href="/detail/<?= $a->slug; ?>">View details &raquo;</a></p>
-                </div><!-- /.col-lg-4 -->
-            <?php else: ?>
+                <?php else: ?>
 
-            <?php endif; ?>
-        <?php endforeach ?>
+                <?php endif; ?>
+            <?php endforeach ?>
+        </div><!-- /.col-lg-4 -->
 
     </div><!-- /.row -->
 

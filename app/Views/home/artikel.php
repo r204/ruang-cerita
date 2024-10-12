@@ -59,9 +59,9 @@
 </div>
 <div class="container">
     <div class="row">
-        <?php foreach ($artikel as $a => $value) : ?>
-            <?php if ($value->status != 'Privat'): ?>
-                <div class="col-md-6 mt-3">
+        <div class="col-md-6 mt-3">
+            <?php foreach ($artikel as $a => $value) : ?>
+                <?php if ($value->status != 'Privat'): ?>
                     <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                         <div class="col p-4 d-flex flex-column position-static" style="height: 300px;">
                             <strong class="d-inline-block mb-2 text-primary"><?= strtoupper($value->category) ?></strong>
@@ -75,12 +75,12 @@
 
                         </div>
                     </div>
-                </div>
+        </div>
+    <?php else: ?>
 
-            <?php else: ?>
+    <?php endif; ?>
+<?php endforeach ?>
 
-            <?php endif; ?>
-        <?php endforeach ?>
     </div>
 </div>
 <?= $this->endsection(); ?>

@@ -4,9 +4,13 @@ namespace App\Controllers;
 
 use App\Models\ArtikelModel;
 use App\Models\KategoriModel;
+use App\Models\StatusModel;
 
+helper('date');
 helper('form');
 helper('text');
+helper('url');
+
 
 class Artikel extends BaseController
 {
@@ -17,7 +21,7 @@ class Artikel extends BaseController
     public function index()
     {
         //$artikel = new ArtikelModel();
-        $artikel = $this->artikelModel->show_category();
+        $artikel = $this->artikelModel->findAll();
         $data = [
             'title' => 'Ruang Cerita | Artikel',
             'artikel' => $artikel
@@ -30,11 +34,14 @@ class Artikel extends BaseController
     {
         $category = new KategoriModel();
         $categories = $category->findAll();
+        $statuses = new StatusModel();
+        $status = $statuses->findAll();
         $artikel = $this->artikelModel->findAll();
         $data = [
             'title' => 'Ruang Cerita | Artikel',
             'artikel' => $artikel,
-            'categories' => $categories
+            'categories' => $categories,
+            'status' => $status
         ];
         echo view('admin/templates/header', $data);
         echo view('admin/artikel/create',);
@@ -42,8 +49,7 @@ class Artikel extends BaseController
     }
     public function save()
     {
-        helper('date');
-        $now = now();
+        $now = date('Y-m-d H:i:s', now());
         $rules = [
             'judul' => [
                 'rules' => 'required',
@@ -61,6 +67,12 @@ class Artikel extends BaseController
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'Kategori Artikel Harus Diisi'
+                ]
+            ],
+            'status' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Status Artikel Harus Diisi'
                 ]
             ],
 
@@ -84,6 +96,7 @@ class Artikel extends BaseController
             'judul' => $this->request->getVar('judul'),
             'slug' => $slug,
             'category' => $this->request->getVar('category'),
+            'status' => $this->request->getVar('status'),
             'body' => $this->request->getVar('body'),
             'img1' => $filename,
             'img2' => $filename2,
@@ -96,14 +109,19 @@ class Artikel extends BaseController
     }
     public function delete($id)
     {
+        $this->artikelmodel = new ArtikelModel();
+        $this->artikelmodel->find($id);
+        $artikel = $this->artikelmodel->find($id);
 
-        $this->artikel = new ArtikelModel();
-        //$foto = $this->artikel->find($id);
-        //unlink('img/artikel' . $foto->img1);
+        unlink('img/artikel/' . $artikel->img1);
+        unlink('img/artikel/' . $artikel->img2);
 
-        $this->artikel->where(['id' => $id])->delete();
+        $this->artikelmodel->where(['id' => $id])->delete();
+        //if ($artikel) {
+        //$artikelmodel->delete($id);
         session()->setFlashdata('sukses', 'Artikel berhasil dihapus');
-        return redirect()->to('admin.artikel');
+        return redirect()->to('/admin.artikel');
+        //}
     }
 
     public function edit($slug)

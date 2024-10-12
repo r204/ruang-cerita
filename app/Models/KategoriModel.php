@@ -11,4 +11,13 @@ class KategoriModel extends Model
     protected $allowedFields = [
         'category'
     ];
+
+    public function getAllData()
+    {
+        return $this->db->table('kategori')->get();
+    }
+    public function tambah($data)
+    {
+        return $this->db->table('kategori')->insert($data);
+    }
 }

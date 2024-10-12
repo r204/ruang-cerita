@@ -28,73 +28,22 @@ class Kategori extends BaseController
         echo view('admin/kategori/index', $data);
         echo view('admin/templates/footer');
     }
-    public function create()
-    {
-        $category = new KategoriModel();
-        $categories = $category->findAll();
-        $artikel = $this->artikelModel->findAll();
-        $data = [
-            'title' => 'Ruang Cerita | Artikel',
-            'artikel' => $artikel,
-            'categories' => $categories
-        ];
-        echo view('admin/templates/header', $data);
-        echo view('admin/artikel/create',);
-        echo view('admin/templates/footer');
-    }
+
     public function save()
     {
-        helper('date');
-        $now = now();
-        $rules = [
-            'judul' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Judul Harus Diisi'
-                ]
-            ],
-            'body' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Isi Artikel Harus Diisi'
-                ]
-            ],
-            'category' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kategori Artikel Harus Diisi'
-                ]
-            ],
-
+        $this->kategorimodel = new KategoriModel;
+        //$data = new KategoriModel();
+        $data = [
+            'category' => $this->request->getPost('category')
         ];
+        ($this->request->getVar($data));
 
-        if (!$this->validate($rules)) {
-            return redirect()->back()->withInput()->with('error', $this->validator->listErrors());
+
+        $success = $this->kategorimodel->tambah($data);
+        if ($success) {
+            session()->setFlashdata('berhasil', 'Kategori berhasil dibuat!');
+            return redirect()->to('admin.kategori');
         }
-        $filefoto = $this->request->getFile('img1');
-        $filefoto2 = $this->request->getFile('img2');
-
-        //get foto
-        $filefoto->move('img/artikel');
-        $filefoto2->move('img/artikel');
-        $filename = $filefoto->getName();
-        $filename2 = $filefoto2->getName();
-
-        $artikel = new ArtikelModel();
-        $slug = url_title($this->request->getVar('judul'), '-', true);
-        $artikel->save([
-            'judul' => $this->request->getVar('judul'),
-            'slug' => $slug,
-            'category' => $this->request->getVar('category'),
-            'body' => $this->request->getVar('body'),
-            'img1' => $filename,
-            'img2' => $filename2,
-            'created_at' => $now,
-            'updated_at' => $now
-        ]);
-        //dd($this->request->getVar($artikel));
-        session()->setFlashdata('berhasil', 'Artikel berhasil dibuat!');
-        return redirect()->to('admin.artikel');
     }
     public function delete($id)
     {

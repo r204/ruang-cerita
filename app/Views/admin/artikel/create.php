@@ -52,10 +52,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="status" class="form-label">Status</label>
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" aria-label="Default select example" name="status" value="<?= set_value('status') ?>">
                                         <option selected>Status Publikasi</option>
-                                        <option value="1">Publik</option>
-                                        <option value="0">Privat</option>
+                                        <?php foreach ($status as $s) : ?>
+                                            <option value="<?php echo $s['id'] ?>"><?php echo $s['status'] ?></option>
+                                        <?php endforeach ?>
                                     </select>
                                 </div>
 

@@ -12,7 +12,7 @@ class logged_in implements FilterInterface
     {
 
         if (!session()->get('logged_in') == 'true') {
-            return redirect()->to('/login');
+            return redirect()->to('/sign-in');
         }
     }
 

@@ -12,8 +12,10 @@ class AuthModel extends Model
         'nama',
         'email',
         'password',
-        'is_admin'
+        'is_admin',
+        'created_at',
     ];
+    protected $useTimestamps = true;
 
     function show_admin()
     {

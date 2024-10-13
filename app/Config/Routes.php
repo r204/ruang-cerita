@@ -29,16 +29,15 @@ $routes->setAutoRoute(true);
  * --------------------------------------------------------------------
  */
 //Admin Routes
-$routes->get('/admin.dashboard', 'Dashboard::index');
+$routes->get('/admin.dashboard', 'Dashboard::index', ['filter' => 'Pagebarier']);
 //artikel
-$routes->get('/admin.artikel', 'Artikel::index');
-$routes->get('/admin.artikel.create', 'Artikel::create');
+$routes->get('/admin.artikel', 'Artikel::index', ['filter' => 'Pagebarier']);
+$routes->get('/admin.artikel.create', 'Artikel::create', ['filter' => 'Pagebarier']);
 $routes->post('/admin.artikel', 'Artikel::save');
 $routes->delete('/admin.artikel/delete/(:num)', 'Artikel::delete/$1');
-//$routes->get('/create', 'Artikel::create');
 //kategori
-$routes->get('/admin.kategori', 'Kategori::index');
-$routes->get('/admin.kategori.create', 'Kategori::create');
+$routes->get('/admin.kategori', 'Kategori::index', ['filter' => 'Pagebarier']);
+$routes->get('/admin.kategori.create', 'Kategori::create', ['filter' => 'Pagebarier']);
 $routes->post('/admin.kategori', 'Kategori::save');
 $routes->delete('/admin.kategori/delete/(:num)', 'Kategori::delete/$1');
 
@@ -48,10 +47,12 @@ $routes->delete('/admin.kategori/delete/(:num)', 'Kategori::delete/$1');
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('/artikel', 'Home::artikel');
-$routes->get('/detail/(:segment)', 'Home::detail/$1',);
+$routes->get('/detail/(:segment)', 'Home::detail/$1', ['filter' => 'logged_in']);
 
 //Authentication Routes
 $routes->get('/sign-in', 'Auth::index');
+$routes->post('/sign-in', 'Auth::login');
+$routes->get('/logout', 'Auth::logout');
 $routes->get('/sign-up', 'Auth::signup');
 $routes->post('/sign-up', 'Auth::save');
 /**

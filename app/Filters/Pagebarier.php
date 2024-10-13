@@ -6,7 +6,7 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Filters\FilterInterface;
 
-class FilterErp implements FilterInterface
+class Pagebarier implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {

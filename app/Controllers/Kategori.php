@@ -48,15 +48,13 @@ class Kategori extends BaseController
     public function delete($id)
     {
 
-        $this->artikel = new ArtikelModel();
-        $foto = $this->artikel->find($id);
-        $foto2 = $this->artikel->find($id);
-        unlink('img/artikel/' . $foto->img1);
-        unlink('img/artikel/' . $foto2->img2);
+        $this->kategorimodel = new KategoriModel();
+        $this->kategorimodel->find($id);
 
-        $this->artikel->where(['id' => $id])->delete();
-        session()->setFlashdata('sukses', 'Artikel berhasil dihapus');
-        return redirect()->to('admin.artikel');
+
+        $this->kategorimodel->where(['id' => $id])->delete();
+        session()->setFlashdata('sukses', 'Kategori berhasil dihapus');
+        return redirect()->to('/admin.kategori');
     }
 
     public function edit($slug)

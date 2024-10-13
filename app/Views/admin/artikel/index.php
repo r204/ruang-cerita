@@ -66,9 +66,9 @@
                             <td><?php echo $value->judul ?></td>
                             <td><?php echo word_limiter($value->body, 15) ?></td>
                             <?php if ($value->status != '1'): ?>
-                                <td><span class="badge rounded-pill bg-warning"><?php echo $value->status ?></span></td>
+                                <td><span class="badge rounded-pill bg-warning">Privat</span></td>
                             <?php else: ?>
-                                <td><span class="badge rounded-pill bg-success"><?php echo $value->status ?></span></td>
+                                <td><span class="badge rounded-pill bg-success">Publik</span></td>
                             <?php endif; ?>
                             <td><?= date('d/M/Y', strtotime($value->created_at)) ?></td>
                             <td>

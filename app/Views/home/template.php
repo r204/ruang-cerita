@@ -27,7 +27,30 @@
                 <li class="nav-item"><a href="/" class="nav-link    " aria-current="page">Home</a></li>
                 <li class="nav-item"><a href="/artikel" class="nav-link">Blog</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-                <li class="nav-item justify-content-end"><a href="sign-in" class="nav-link">Sign in</a></li>
+                <?php $session = session(); ?>
+                <?php if (session()->has('logged_in') == true) : ?>
+
+                    <a class="nav-link dropdown-toggle me-4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="" class="rounded-circle" width="40px" height="40px">
+                        <?php echo $session->get('nama') ?>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <form action="/logout" method="GET">
+                                <button type="submit" class="dropdown-item">
+                                    Logout
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                <?php else : ?>
+
+                    <li class="nav-item" style="width: 120px;">
+                        <a class="nav-link text-primary" href="/sign-in">Login</a>
+                    </li>
+
+                <?php endif; ?>
+
             </ul>
         </header>
     </div>

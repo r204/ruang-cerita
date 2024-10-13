@@ -50,7 +50,13 @@
                             <td><?php echo $a['category'] ?></td>
                             <td>
                                 <a href="" class="btn btn-outline-warning">Edit</a>
-                                <a href="" class="btn btn-outline-danger">Hapus</a>
+                                <?= csrf_field(); ?>
+                                <form action="admin.kategori/delete/<?= $a['id']; ?>" method="POST" class="d-inline">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button class="btn btn-outline-danger" onclick="return confirm('Apakah anda yakin mau menghapus kategori <?php echo $a['category'] ?>');">
+                                        <i class="fas fa-trash"></i> Hapus
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         <?php $i++; ?>

@@ -40,6 +40,7 @@ $routes->delete('/admin.artikel/delete/(:num)', 'Artikel::delete/$1');
 $routes->get('/admin.kategori', 'Kategori::index');
 $routes->get('/admin.kategori.create', 'Kategori::create');
 $routes->post('/admin.kategori', 'Kategori::save');
+$routes->delete('/admin.kategori/delete/(:num)', 'Kategori::delete/$1');
 
 
 
@@ -52,6 +53,7 @@ $routes->get('/detail/(:segment)', 'Home::detail/$1',);
 //Authentication Routes
 $routes->get('/sign-in', 'Auth::index');
 $routes->get('/sign-up', 'Auth::signup');
+$routes->post('/sign-up', 'Auth::save');
 /**
  * --------------------------------------------------------------------
  * Additional Routing

@@ -31,7 +31,7 @@
                 <?php if (session()->has('logged_in') == true) : ?>
 
                     <a class="nav-link dropdown-toggle me-4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="" class="rounded-circle" width="40px" height="40px">
+                        <img src="img/undraw_profile.svg" class="rounded-circle" width="40px" height="40px">
                         <?php echo $session->get('nama') ?>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">

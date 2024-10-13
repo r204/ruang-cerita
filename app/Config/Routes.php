@@ -33,13 +33,13 @@ $routes->get('/admin.dashboard', 'Dashboard::index', ['filter' => 'Pagebarier'])
 //artikel
 $routes->get('/admin.artikel', 'Artikel::index', ['filter' => 'Pagebarier']);
 $routes->get('/admin.artikel.create', 'Artikel::create', ['filter' => 'Pagebarier']);
-$routes->post('/admin.artikel', 'Artikel::save');
+$routes->post('/admin.artikel', 'Artikel::save', ['filter' => 'Pagebarier']);
 $routes->delete('/admin.artikel/delete/(:num)', 'Artikel::delete/$1');
 //kategori
 $routes->get('/admin.kategori', 'Kategori::index', ['filter' => 'Pagebarier']);
 $routes->get('/admin.kategori.create', 'Kategori::create', ['filter' => 'Pagebarier']);
-$routes->post('/admin.kategori', 'Kategori::save');
-$routes->delete('/admin.kategori/delete/(:num)', 'Kategori::delete/$1');
+$routes->post('/admin.kategori', 'Kategori::save', ['filter' => 'Pagebarier']);
+$routes->delete('/admin.kategori/delete/(:num)', 'Kategori::delete/$1', ['filter' => 'Pagebarier']);
 
 
 

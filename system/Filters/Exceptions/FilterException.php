@@ -1,4 +1,6 @@
-<?php namespace CodeIgniter\Filters\Exceptions;
+<?php
+
+namespace CodeIgniter\Filters\Exceptions;
 
 use CodeIgniter\Exceptions\ConfigException;
 use CodeIgniter\Exceptions\ExceptionInterface;

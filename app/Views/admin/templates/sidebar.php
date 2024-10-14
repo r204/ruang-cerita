@@ -270,12 +270,12 @@
                                         Activity Log
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <form action="/logout" method="GET">
-                                        <button class="dropdown-item" type="submit" data-toggle="modal" data-target="#logoutModal">
-                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            Logout
-                                        </button>
-                                    </form>
+
+                                    <button class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                    </button>
+
                                 </div>
                             </li>
                         <?php endif; ?>

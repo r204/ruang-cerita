@@ -13,9 +13,9 @@ class AuthModel extends Model
         'email',
         'password',
         'is_admin',
-        'created_at',
+        'created_at'
     ];
-    protected $useTimestamps = true;
+    //protected $useTimestamps = true;
 
     function show_admin()
     {

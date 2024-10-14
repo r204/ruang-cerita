@@ -43,7 +43,8 @@ class Auth extends BaseController
                     'nama' => $data['nama'],
                     'role' => $data['is_admin'],
                     'email' => $data['email'],
-                    'password' => $data['password']
+                    'password' => $data['password'],
+                    'created_at' => $data['created_at']
                 ];
                 session()->set($ses_data);
                 $session->set($ses_data);
@@ -55,7 +56,8 @@ class Auth extends BaseController
                     'nama' => $data['nama'],
                     'role' => $data['is_admin'],
                     'email' => $data['email'],
-                    'password' => $data['password']
+                    'password' => $data['password'],
+                    'created_at' => $data['created_at']
                 ];
                 session()->set($ses_data);
                 $session->set($ses_data);

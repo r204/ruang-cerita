@@ -41,6 +41,9 @@ $routes->get('/admin.kategori.create', 'Kategori::create', ['filter' => 'Pagebar
 $routes->post('/admin.kategori', 'Kategori::save', ['filter' => 'Pagebarier']);
 $routes->delete('/admin.kategori/delete/(:num)', 'Kategori::delete/$1', ['filter' => 'Pagebarier']);
 
+//Profile
+$routes->get('/admin.profile', 'Profile::index');
+
 
 
 // We get a performance increase by specifying the default

@@ -9,7 +9,7 @@ class ArtikelModel extends Model
     protected $table            = 'artikel';
     protected $primarykey       = 'id';
     protected $returnType       = 'object';
-    protected $allowedFields    = ['judul', 'slug', 'body', 'img1', 'created_at', 'updated_at', 'category', 'img2', 'status'];
+    protected $allowedFields    = ['judul', 'slug', 'author', 'body', 'img1', 'created_at', 'updated_at', 'category', 'img2', 'status'];
     protected $useTimestamps = true;
     protected $useSoftDeletes   = false;
 

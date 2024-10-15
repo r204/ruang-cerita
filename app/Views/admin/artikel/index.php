@@ -72,7 +72,7 @@
                             <?php endif; ?>
                             <td><?= date('d/M/Y', strtotime($value->created_at)) ?></td>
                             <td>
-                                <a href="" class="btn btn-outline-warning">Edit</a>
+                                <a href="admin.artikel/edit/<?= $value->slug; ?>" class="btn btn-outline-warning">Edit</a>
                                 <?= csrf_field(); ?>
                                 <form action="admin.artikel/delete/<?= $value->id; ?>" method="POST" class="d-inline">
                                     <input type="hidden" name="_method" value="DELETE">

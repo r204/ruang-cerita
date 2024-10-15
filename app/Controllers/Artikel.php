@@ -6,6 +6,8 @@ use App\Models\ArtikelModel;
 use App\Models\KategoriModel;
 use App\Models\StatusModel;
 
+$session = \Config\Services::session();
+
 helper('date');
 helper('form');
 helper('text');
@@ -95,6 +97,7 @@ class Artikel extends BaseController
         $artikel->save([
             'judul' => $this->request->getVar('judul'),
             'slug' => $slug,
+            'author' => session()->get('nama'),
             'category' => $this->request->getVar('category'),
             'status' => $this->request->getVar('status'),
             'body' => $this->request->getVar('body'),

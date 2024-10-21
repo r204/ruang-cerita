@@ -42,7 +42,17 @@
                                 </button>
                             </form>
                         </li>
+                        <?php if (!session()->has('role') == '1') : ?>
+                            <li>
+                                <a href="/admin.dashboard" class="dropdown-item">Dashboard</a>
+                            </li>
+                        <?php else : ?>
+                            <li>
+                                <a href="/profile" class="dropdown-item">Profile</a>
+                            </li>
+                        <?php endif; ?>
                     </ul>
+
                 <?php else : ?>
 
                     <li class="nav-item" style="width: 120px;">

@@ -115,6 +115,7 @@ class Auth extends BaseController
             'nama' => $this->request->getVar('nama'),
             'email' => $this->request->getVar('email'),
             'password' => password_hash($this->request->getVar('password'), PASSWORD_BCRYPT),
+            
             'created_at' => $now
         ]);
         session()->setFlashdata('berhasil', 'Registrasi Akun Berhasil');

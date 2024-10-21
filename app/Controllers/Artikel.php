@@ -129,20 +129,25 @@ class Artikel extends BaseController
 
     public function edit($slug)
     {
+        $category = new KategoriModel();
+        $categories = $category->findAll();
+        $statuses = new StatusModel();
+        $status = $statuses->findAll();
         $this->model = new ArtikelModel();
         $data = [
             'title' => 'Form Edit Artikel',
             'validation' => \config\Services::validation(),
-            'artikel' => $this->model->getArtikel($slug)
+            'artikel' => $this->model->getArtikel($slug),
+            'categories' => $categories,
+            'status' => $status
         ];
-        echo view('admin/layout/header', $data);
-        echo view('admin/layout/top_menu');
-        echo view('admin/layout/side_menu');
-        return view('admin/artikel/edit', $data);
-        echo view('admin/layout/footer');
+        echo view('admin/templates/header', $data);
+        echo view('admin/artikel/edit', $data);
+        echo view('admin/templates/footer');
     }
     public function update($id)
     {
+        $now = date('Y-m-d H:i:s', now());
         $rules = [
             'judul' => [
                 'rules' => 'required',
@@ -155,30 +160,51 @@ class Artikel extends BaseController
                 'errors' => [
                     'required' => 'Isi Artikel Harus Diisi'
                 ]
-            ]
+            ],
+            'category' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Kategori Artikel Harus Diisi'
+                ]
+            ],
+            'status' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Status Artikel Harus Diisi'
+                ]
+            ],
 
         ];
         if (!$this->validate($rules)) {
             return redirect()->back()->withInput()->with('error', $this->validator->listErrors());
         }
-        $filefoto = $this->request->getFile('img');
-        if ($filefoto->getError() == 4) {
-            $filename = $this->request->getVar('imglama');
+        $filefoto1 = $this->request->getFile('img1');
+        $filefoto2 = $this->request->getFile('img2');
+        if ($filefoto1->getError() == 4) {
+            $filename1 = $this->request->getVar('imglama1');
+            $filename2 = $this->request->getVar('imglama2');
         } else {
-            $filefoto->move('img/artikel');
-            unlink('img/artikel/' . $this->request->getVar('imglama'));
-            $filename = $filefoto->getName();
+            $filefoto1->move('img/artikel');
+            $filefoto2->move('img/artikel');
+            //unlink('img/artikel/' . $this->request->getVar('imglama1'));
+            //unlink('img/artikel/' . $this->request->getVar('imglama2'));
+            $filename1 = $filefoto1->getName();
+            $filename2 = $filefoto2->getName();
         }
 
         $artikel = new ArtikelModel();
         $slug = url_title($this->request->getVar('judul'), '-', true);
         //dd($this->request->getVar());
         $artikel->save([
-            'id' => $id,
             'judul' => $this->request->getVar('judul'),
             'slug' => $slug,
+            'author' => session()->get('nama'),
+            'category' => $this->request->getVar('category'),
+            'status' => $this->request->getVar('status'),
             'body' => $this->request->getVar('body'),
-            'img' => $filename
+            'img1' => $filename1,
+            'img2' => $filename2,
+            'updated_at' => $now
         ]);
         session()->setFlashdata('updated', 'Artikel berhasil diupdate');
         return redirect()->to('admin.artikel');

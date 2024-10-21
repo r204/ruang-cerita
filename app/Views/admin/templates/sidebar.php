@@ -53,6 +53,11 @@
                     <i class="fas fa-fw fa-address-card"></i>
                     <span>About Us</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-layer-group"></i>
+                    <span>Carousell</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

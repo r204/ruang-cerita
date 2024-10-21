@@ -34,6 +34,8 @@ $routes->get('/admin.dashboard', 'Dashboard::index', ['filter' => 'Pagebarier'])
 $routes->get('/admin.artikel', 'Artikel::index', ['filter' => 'Pagebarier']);
 $routes->get('/admin.artikel.create', 'Artikel::create', ['filter' => 'Pagebarier']);
 $routes->post('/admin.artikel', 'Artikel::save', ['filter' => 'Pagebarier']);
+$routes->get('/admin.artikel.edit/(:segment)', 'Artikel::edit/$1', ['filter' => 'Pagebarier']);
+$routes->post('/admin.artikel.edit/(:segment)', 'Artikel::update/$1', ['filter' => 'Pagebarier']);
 $routes->delete('/admin.artikel/delete/(:num)', 'Artikel::delete/$1');
 //kategori
 $routes->get('/admin.kategori', 'Kategori::index', ['filter' => 'Pagebarier']);

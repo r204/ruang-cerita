@@ -54,7 +54,7 @@
                     <span>About Us</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/admin.carousel">
                     <i class="fas fa-fw fa-layer-group"></i>
                     <span>Carousell</span></a>
             </li>

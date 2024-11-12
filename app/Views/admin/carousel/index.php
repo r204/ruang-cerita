@@ -1,0 +1,93 @@
+<?= $this->extend('admin/templates/sidebar'); ?>
+<?= $this->section('content'); ?>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 class="m-0 font-weight-bold text-primary">Daftar Carousel</h2>
+                </div>
+
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= site_url('admin.carousel') ?>">List Carousel</a></li>
+                        <li class="breadcrumb-item active">Tambah Carousel Baru</li>
+                    </ol>
+                </div>
+            </div>
+            <?php if (!empty(session()->getFlashdata('berhasil'))) : ?>
+                <div class="alert alert-success">
+                    <i class="fas fa-check"></i> <?php echo session()->getFlashdata('berhasil'); ?>
+                </div>
+            <?php endif ?>
+            <?php if (!empty(session()->getFlashdata('sukses'))) : ?>
+                <div class="alert alert-danger">
+                    <i class="fas fa-trash"></i> <?php echo session()->getFlashdata('sukses'); ?>
+                </div>
+            <?php endif ?>
+            <?php if (!empty(session()->getFlashdata('updated'))) : ?>
+                <div class="alert alert-success">
+                    <i class="fas fa-check"></i> <?php echo session()->getFlashdata('updated'); ?>
+                </div>
+            <?php endif ?>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <a href="/admin.carousel.create" class="btn btn-primary">Buat Carousel Baru</a>
+        <div class="table-responsive mt-2">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Judul</th>
+                        <th>caption</th>
+                        <th>Status Publikasi</th>
+                        <th>Tanggal Pembuatan</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>No.</th>
+                        <th>Judul</th>
+                        <th>caption</th>
+                        <th>Status Publikasi</th>
+                        <th>Tanggal Pembuatan</th>
+                        <th>Aksi</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($carousel as $a) : ?>
+                        <tr>
+                            <td><?php echo $i ?></td>
+                            <td><?php echo $a->judul ?></td>
+                            <td><?php echo word_limiter($a->caption, 15) ?></td>
+                            <?php if ($a->status != '1'): ?>
+                                <td><span class="badge rounded-pill bg-warning">Privat</span></td>
+                            <?php else: ?>
+                                <td><span class="badge rounded-pill bg-success">Publik</span></td>
+                            <?php endif; ?>
+                            <td><?= date('d/M/Y', strtotime($a->created_at)) ?></td>
+                            <td>
+                                <a href="admin.artikel.edit" class="btn btn-outline-warning">Edit</a>
+                                <?= csrf_field(); ?>
+                                <form action="admin.artikel/delete/<?= $a->id; ?>" method="POST" class="d-inline">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button class="btn btn-outline-danger" onclick="return confirm('Apakah anda yakin mau menghapus artikel berjudul <?php echo $a->judul ?>');">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        <?php $i++; ?>
+                    <?php endforeach ?>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<?= $this->endsection(); ?>

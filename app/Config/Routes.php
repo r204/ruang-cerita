@@ -43,6 +43,14 @@ $routes->get('/admin.kategori.create', 'Kategori::create', ['filter' => 'Pagebar
 $routes->post('/admin.kategori', 'Kategori::save', ['filter' => 'Pagebarier']);
 $routes->delete('/admin.kategori/delete/(:num)', 'Kategori::delete/$1', ['filter' => 'Pagebarier']);
 
+//Carousel
+$routes->get('/admin.carousel', 'Carousel::index', ['filter' => 'Pagebarier']);
+$routes->get('/admin.carousel.create', 'Carousel::create', ['filter' => 'Pagebarier']);
+$routes->post('/admin.carousel', 'Carousel::save', ['filter' => 'Pagebarier']);
+$routes->delete('/admin.carousel/delete/(:num)', 'Carousel::delete/$1', ['filter' => 'Pagebarier']);
+
+
+
 //Profile
 $routes->get('/admin.profile', 'Profile::index');
 
